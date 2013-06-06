@@ -1,6 +1,14 @@
 # svg-to-json.js
 
-A super dirty script for importing svg data output by Adobe Illustrator and similar to JSON suitable for use by Raphael.js
+A super dirty script for importing SVG data output by Adobe Illustrator and similar to JSON suitable for use by Raphael.js
+
+## Usage
+
+    cd svg-to-json
+
+    npm install
+
+    node svg-to-json.js filename1.txt filename2.txt filename3.txt
 
 ## How it works
 
@@ -56,12 +64,4 @@ A super dirty script for importing svg data output by Adobe Illustrator and simi
       }
     } ];
 
-  Each individual svg element object will be in the correct formatting for processing by Raphael's `Raphael.paper().add()` method as detailed (here)[http://raphaeljs.com/reference.html#Paper.add].
-
-## Usage
-
-    cd svg-to-json
-
-    npm install
-
-    node svg-to-json.js filename1.txt filename2.txt filename3.txt
+  Each individual svg element object will be in the correct formatting for processing by Raphael's `Raphael.paper().add()` method as detailed [here](http://raphaeljs.com/reference.html#Paper.add).
