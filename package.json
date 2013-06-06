@@ -1,0 +1,12 @@
+{
+  "name": "svg-import.js",
+  "version": "0.3.0",
+  "author": "Chris Finch <chrisfinchy@gmail.com>",
+  "description": "A super dirty script for importing svg data output by Adobe Illustrator and similar to JSON suitable for use by Raphael.js",
+  "dependencies" : {
+    "buffered-reader":  "*",
+    "jsdom" :  "*",
+    "eval" :  "*"
+  },
+  "license": "MIT"
+}
