@@ -1,4 +1,7 @@
 # svg-to-json.js
+## Command Line Utility for SVG to JSON conversion
+
+---
 
 A super dirty script for importing SVG data output by Adobe Illustrator and similar to JSON suitable for use by Raphael.js
 
