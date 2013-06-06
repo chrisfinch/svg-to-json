@@ -169,16 +169,14 @@ var parse = function () {
 
       var filename = names.join("-")+"_svg-to-json.json";
 
-      console.log(out);
-
-      // fs.writeFile(filename, JSON.stringify(out), function(err) {
-      //     if(err) {
-      //         console.log(err);
-      //     } else {
-      //         console.log(filename+" was saved!");
-      //     }
-      //     process.exit(0); // Finish
-      // });
+      fs.writeFile(filename, JSON.stringify(out), function(err) {
+          if(err) {
+              console.log(err);
+          } else {
+              console.log(filename+" was saved!");
+          }
+          process.exit(0); // Finish
+      });
 
     };
 
