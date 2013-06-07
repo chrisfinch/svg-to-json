@@ -1,12 +1,10 @@
 // Make sure we got a filename on the command line.
 if (process.argv.length < 3) {
-  console.log('Usage: node ' + process.argv[1] + ' ON_FILENAME OFF_FILENAME');
+  console.log("\r\nUsage: node svg-to-json.js svg_layer1.txt svg_layer2.txt ... svg_layerN.txt\r\n");
   process.exit(1);
 }
 
-// Read the file and print its contents.
 var fs = require('fs');
-
 var jsdom = require("jsdom");
 var jquery = fs.readFileSync("./jquery.js").toString();
 var Raphael = require("raphael-browserify");
@@ -17,8 +15,9 @@ var fileData = [],
     names = [];
 
 var read = function () {
+  console.log("\r\n"+files.length+" files detected...");
   files.forEach(function (e, i) {
-    console.log("Reading file: ", e);
+    console.log("\r\nReading file: ", e);
     var f = fs.readFileSync(e, "utf8"),
         name = e.replace(".txt", "");
     fileData.push({
@@ -39,7 +38,7 @@ var parse = function () {
     while (fileData.length > 0) {
       (function (f) {
 
-        console.log("Parsing a DOM for: ", f.name);
+        console.log("\r\nParsing a DOM for: ", f.name);
 
         jsdom.env({
           html: f.data,
@@ -143,13 +142,12 @@ var parse = function () {
         if (e.paths.length != l) valid = false;
       });
       if (!valid) {
-        console.error("ERROR: All files must have the same number of group layers.");
+        console.error("\r\nERROR: All files must have the same number of group layers.");
         process.exit(1);
       }
-      console.log("Layers OK; attempting to write file...");
+      console.log("\r\nLayers OK; attempting to write file...");
 
-// AHHHHHHHHHHHHHHHHHHHHHHH
-
+      // AHHHHHHHHHHHHHHHHHHHHHHH
       var out = [];
 
       parsed[0].paths.forEach(function (e, j) {
@@ -160,10 +158,8 @@ var parse = function () {
         for (var i = 0; i < parsed.length; i++) {
           var p = parsed[i].paths[j].paths;
           item.paths["layer_"+i] = p;
-        };
-
+        }
         out.push(item);
-
       });
 
 
@@ -173,36 +169,12 @@ var parse = function () {
           if(err) {
               console.log(err);
           } else {
-              console.log(filename+" was saved!");
+              console.log("\r\n"+filename+" was saved!\r\n");
           }
           process.exit(0); // Finish
       });
 
     };
-
-    // // OFF's
-    // jsdom.env({
-    //   html: file_off,
-    //   src: [jquery],
-    //   done: function (errors, window) {
-    //     var $ = window.$;
-    //     // each top level group
-    //     var $g = $("svg").children("g").children("g");
-    //     $g.each(function (i, e) {
-    //       var callback = function (paths) {
-    //         off_data.push({
-    //           name: $(e).parent().attr("id"),
-    //           paths: paths
-    //         });
-    //         if (i == $g.length-1) {
-    //           off_parsed = true;
-    //           write();
-    //         }
-    //       };
-    //       grind($, $(e), callback);
-    //     });
-    //   }
-    // });
 
 };
 
@@ -216,8 +188,8 @@ var mungePolygon = function (pointString) {
         var d = parseFloat(c[j]);
         if (d)
           poly.push(d);
-     };
-     if (i == 0)
+     }
+     if (i === 0)
       poly.push('L');
   }
   poly.push('Z');
@@ -230,4 +202,5 @@ var mungeMatrix = function (matrix) {
   return m.toTransformString();
 };
 
+// GO!!!
 read();
