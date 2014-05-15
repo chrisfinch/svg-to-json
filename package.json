@@ -6,7 +6,8 @@
   "dependencies" : {
     "buffered-reader":  "*",
     "jsdom" :  "*",
-    "eval" :  "*"
+    "eval" :  "*",
+    "raphael-browserify"  : "*"
   },
   "license": "MIT"
 }
